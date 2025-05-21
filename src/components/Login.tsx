@@ -11,7 +11,9 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
+  <div className={styles.container}>
+    <div className={styles.leftPanel}></div>
+    <div className={styles.rightPanel}>
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
         <h2 className={styles.title}>登录</h2>
         <div className={styles.inputGroup}>
@@ -36,6 +38,7 @@ const Login = () => {
         </div>
         <button type="submit" className={styles.submitBtn}>登录</button>
       </form>
+    </div>
     </div>
   );
 };
