@@ -121,8 +121,8 @@
   max-width: 480px;
   animation: slideInRight 1s ease-out;
   margin-left: -15rem;
-}
-
+  }
+  
 @keyframes slideIn {
   from {
     opacity: 0;

@@ -43,8 +43,9 @@
 }
 
 .sider.collapsed .menuTitle {
-  padding: 1rem 0.5rem;
+  padding: 0.8rem 0.5rem;
   justify-content: center;
+  margin: 0.3rem 0.5rem;
 }
 
 .sider.collapsed .menuIcon {
@@ -90,6 +91,11 @@
 
 .sider.collapsed .menuGroup {
   position: relative;
+  margin-bottom: 0.3rem;
+}
+
+.sider.collapsed .menuGroup:last-child {
+  margin-bottom: 0;
 }
 
 .sider.collapsed .menuGroup.active .subMenuWrapper {
@@ -192,8 +198,13 @@
 }
 
 .menuGroup {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 0.2rem 0 0 0;
+  padding: 0;
+  margin-bottom: 0;
+  border-radius: 8px;
+}
+
+.menuGroup:last-child {
+  margin-bottom: 0;
 }
 
 .menuTitle {
@@ -210,7 +221,7 @@
   align-items: center;
   letter-spacing: 0.3px;
   color: #fff;
-  margin: 0.2rem 0.8rem 0 0.8rem;
+  margin: 0.3rem 0.8rem;
   border-radius: 6px;
   white-space: nowrap;
 }
@@ -240,6 +251,16 @@
 .menuTitle:hover .menuIcon,
 .active .menuIcon {
   color: #fff;
+}
+
+/* 移除一级菜单在选中状态下的高亮样式 */
+.menuTitle.active {
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.menuTitle.active .menuIcon {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .arrow {
@@ -272,35 +293,42 @@
 }
 
 .subMenuWrapper {
-  height: 0;
   overflow: hidden;
-  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.3s ease;
+  /* background: rgba(0, 0, 0, 0.1); */
+  border-radius: 0 0 6px 6px;
+  margin: 0 0.8rem;
+  height: 0;
 }
 
 .subMenu {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 0.5rem 0 1rem 0;
+  padding: 0.3rem 0;
+  background: transparent;
   transform-origin: top;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menuItem {
-  padding: 0.8rem 1.2rem;
+  padding: 0.6rem 1.2rem;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease;
-  letter-spacing: 0.2px;
-  text-align: left;
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0.4rem 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
   border-radius: 6px;
+  margin: 0.5rem 0;
+  white-space: nowrap;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.menuItem:first-child {
+  margin-top: 0.5rem;
 }
 
 .menuItem:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 .menuItem .menuIcon {
@@ -354,13 +382,88 @@
   margin: 0 8px 0 0;
 }
 
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerItem {
+  position: relative;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerItem:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.headerIcon {
+  font-size: 1.4rem;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.headerItem:hover .headerIcon {
+  color: #333;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 8px;
+}
+
 .userSection {
   position: relative;
+  margin-left: 8px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.userInfo:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.userName {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
 }
 
 .userAvatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
@@ -382,12 +485,41 @@
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: #fff;
+  background: #333338;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   min-width: 160px;
   padding: 8px 0;
   animation: slideIn 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.userMenuItem {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin: 0 8px;
+  border-radius: 6px;
+}
+
+.userMenuItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.userMenuItem svg {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.userMenuItem:hover svg {
+  opacity: 1;
 }
 
 @keyframes slideIn {
@@ -399,26 +531,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.userMenuItem {
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #333;
-}
-
-.userMenuItem:hover {
-  background: rgba(0,112,243,0.06);
-  color: #0070f3;
-}
-
-.userMenuItem svg {
-  font-size: 1.2rem;
-  opacity: 0.8;
 }
 
 .content {
@@ -443,18 +555,6 @@
 .sider.collapsed.expanded .menuText {
   opacity: 1;
   width: auto;
-}
-
-.sider.collapsed .menuTitle {
-  padding: 0.8rem 0.5rem;
-  justify-content: center;
-  margin: 0 0.5rem;
-}
-
-.sider.collapsed.expanded .menuTitle {
-  padding: 0.8rem 1.2rem;
-  justify-content: space-between;
-  margin: 0 0.8rem;
 }
 
 .sider.collapsed .logoText {
