@@ -193,7 +193,7 @@
 
 .menuGroup {
   border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 0.4rem 0 0 0;
+  padding: 0.2rem 0 0 0;
 }
 
 .menuTitle {
@@ -210,7 +210,7 @@
   align-items: center;
   letter-spacing: 0.3px;
   color: #fff;
-  margin: 0.4rem 0.8rem 0 0.8rem;
+  margin: 0.2rem 0.8rem 0 0.8rem;
   border-radius: 6px;
   white-space: nowrap;
 }
@@ -465,4 +465,14 @@
 .sider.collapsed.expanded .logoText {
   opacity: 1;
   width: auto;
+}
+
+.sider.collapsed.expanded .arrow {
+  display: block;
+  opacity: 0.4;
+}
+
+.sider.collapsed.expanded .menuTitle:hover .arrow::before,
+.sider.collapsed.expanded .active .arrow::before {
+  border-color: #fff;
 } 

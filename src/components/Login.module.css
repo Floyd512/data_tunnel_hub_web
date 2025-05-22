@@ -2,39 +2,154 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
-  background: url('/login-bg-2.jpg') no-repeat left 20vw center;
-  background-size: 400px 400px;
+  background: #f8fafc;
   font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  overflow: hidden;
 }
 
 .loginWrapper {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: flex-end;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem;
+  background: #ffffff;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.03);
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: slideIn 1s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.logoTitle {
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: #333338;
+  margin-bottom: 0.7rem;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
   align-items: center;
+  white-space: nowrap;
+}
+
+.logoIcon {
+  font-size: 5.2rem;
+  color: #333338;
+  flex-shrink: 0;
+  width: 5.2rem;
+}
+
+.logoTitle span {
+  color: #333338;
+  margin-left: 12px;
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.logoSubtitle {
+  font-size: 1.5rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  margin-left: 5.2rem;
+}
+
+.illustrationSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -13rem;
+  padding: 2rem;
+}
+
+.illustrationSection img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #ffffff;
+  height: 100vh;
+  position: relative;
+}
+
+.rightSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
 }
 
 .formWrapper {
   background: transparent;
-  padding: 3rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  margin-right: 8vw;
-  min-width: 350px;
-  max-width: 400px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 480px;
+  animation: slideInRight 1s ease-out;
+  margin-left: -15rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .title {
   text-align: center;
-  color: #000;
-  margin-bottom: 2rem;
-  font-size: 1.7rem;
+  color: #333338;
+  margin-bottom: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -42,7 +157,7 @@
 .inputGroup {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
@@ -54,26 +169,60 @@
   pointer-events: none;
 }
 
+.inputLabel {
+  display: block;
+  font-size: 0.92rem;
+  color: #333338;
+  margin-bottom: 0.2rem;
+  margin-left: 0.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
 .input {
   flex: 1;
-  padding: 0.75rem;
+  padding: 1rem;
   border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  font-size: 0.95rem;
+  border-radius: 12px;
+  font-size: 1.1rem !important;
   font-weight: 400;
-  color: #000;
-  transition: border-color 0.2s ease;
+  color: #ffffff !important;
+  background-color: #5a5a5f !important;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
 }
 
-.input::placeholder {
-  color: #8a99b3;
-  opacity: 1;
+/* 覆盖自动填充样式 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #5a5a5f inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+  font-size: 1.1rem !important;
+  caret-color: #ffffff !important;
 }
 
+/* 确保输入框在获得焦点时保持样式 */
 .input:focus {
   outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.1);
+  border-color: #5a5a5f;
+  box-shadow: 0 0 0 2px rgba(90, 90, 95, 0.1);
+  background-color: #5a5a5f !important;
+  font-size: 1.1rem !important;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+}
+
+/* 确保输入框在未获得焦点时也保持样式 */
+.input:not(:focus) {
+  background-color: #5a5a5f !important;
+  font-size: 1.1rem !important;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
 }
 
 .inputError {
@@ -82,19 +231,20 @@
 
 .submitBtn {
   width: 100%;
-  padding: 0.75rem;
-  background-color: #0070f3;
+  padding: 1rem;
+  background-color: #333338;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 1.08rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
 }
 
 .submitBtn:hover {
-  background-color: #0059c8;
+  background-color: #1a1a1d;
 }
 
 .label {
@@ -113,31 +263,43 @@
   font-size: 0.92rem;
 }
 
-.register {
-  color: #0070f3;
+.register, .forgot {
+  color: #333338;
   cursor: pointer;
-  transition: text-decoration 0.2s;
-}
-.register:hover {
-  text-decoration: underline;
+  transition: all 0.2s ease;
 }
 
-.forgot {
-  color: #0070f3;
+.register:hover, .forgot:hover {
+  color: #1a1a1d;
+  text-decoration: none;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: text-decoration 0.2s;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
+  outline: none;
 }
 
-.forgot:hover {
-  text-decoration: underline;
+.passwordToggle:hover {
+  color: #333338;
 }
 
-.inputLabel {
-  display: block;
-  font-size: 0.92rem;
-  color: #000;
-  margin-bottom: 0.2rem;
-  margin-left: 0.1rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+.passwordToggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.passwordToggle svg {
+  font-size: 1.4rem;
 }

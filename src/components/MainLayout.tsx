@@ -1,40 +1,78 @@
 import { useState, useRef, useEffect } from 'react';
-import { MdDashboard, MdPeople, MdSettings, MdLogout, MdPerson, MdTrendingUp, MdMonitor, MdList, MdSecurity, MdBuild, MdMenu } from 'react-icons/md';
-import { SiDatadog } from 'react-icons/si';
+import { 
+  MdPeople, 
+  MdSettings, 
+  MdLogout, 
+  MdPerson, 
+  MdList, 
+  MdSecurity, 
+  MdBuild,
+  MdMenu,
+  MdPlayCircle,
+  MdStorage,
+  MdTune,
+  MdMonitor,
+  MdHistory,
+  MdDescription,
+  MdCloudUpload,
+  MdCloudDownload,
+  MdAssessment
+} from 'react-icons/md';
+import { RiFlowChart } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import styles from './MainLayout.module.css';
 
 const menuData = [
   {
-    title: '数据看板',
-    icon: <MdDashboard />,
+    title: '任务管理',
+    icon: <MdPlayCircle />,
     children: [
-      { title: '总览', icon: <MdDashboard /> },
-      { title: '趋势分析', icon: <MdTrendingUp /> },
-      { title: '实时监控', icon: <MdMonitor /> }
+      { title: '任务列表', icon: <MdList /> },
+      { title: '任务模板', icon: <MdDescription /> },
+      { title: '任务历史', icon: <MdHistory /> }
     ]
   },
   {
-    title: '用户管理',
-    icon: <MdPeople />,
+    title: '数据源管理',
+    icon: <MdStorage />,
     children: [
-      { title: '用户列表', icon: <MdList /> },
-      { title: '权限分配', icon: <MdSecurity /> }
+      { title: '源数据源', icon: <MdCloudUpload /> },
+      { title: '目标数据源', icon: <MdCloudDownload /> },
+      { title: '数据源测试', icon: <MdAssessment /> }
     ]
   },
   {
-    title: '系统设置',
+    title: '任务配置',
+    icon: <MdTune />,
+    children: [
+      { title: '新建任务', icon: <MdPlayCircle /> },
+      { title: '配置模板', icon: <MdDescription /> },
+      { title: '参数管理', icon: <MdSettings /> }
+    ]
+  },
+  {
+    title: '任务监控',
+    icon: <MdMonitor />,
+    children: [
+      { title: '实时监控', icon: <MdMonitor /> },
+      { title: '执行日志', icon: <MdDescription /> },
+      { title: '性能分析', icon: <MdAssessment /> }
+    ]
+  },
+  {
+    title: '系统管理',
     icon: <MdSettings />,
     children: [
-      { title: '基础设置', icon: <MdBuild /> },
-      { title: '安全设置', icon: <MdSecurity /> }
+      { title: '用户管理', icon: <MdPeople /> },
+      { title: '角色权限', icon: <MdSecurity /> },
+      { title: '系统设置', icon: <MdBuild /> }
     ]
   }
 ];
 
 const MainLayout = () => {
   const navigate = useNavigate();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openMenus, setOpenMenus] = useState<number[]>([0]);
   const [selected, setSelected] = useState<string>('总览');
   const [subMenuHeights, setSubMenuHeights] = useState<{[key: number]: number}>({});
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -89,6 +127,14 @@ const MainLayout = () => {
     setIsHovered(false);
   };
 
+  const toggleMenu = (idx: number) => {
+    setOpenMenus(prev => 
+      prev.includes(idx) 
+        ? prev.filter(i => i !== idx)
+        : [...prev, idx]
+    );
+  };
+
   return (
     <div className={styles.layout}>
       <aside 
@@ -99,7 +145,7 @@ const MainLayout = () => {
       >
         <div className={styles.logoSection}>
           <div className={styles.logoWrapper}>
-            <SiDatadog className={styles.logoIcon} />
+            <RiFlowChart className={styles.logoIcon} />
             <div className={styles.logoText}>
               <span>DataTunnel Hub</span>
             </div>
@@ -109,22 +155,22 @@ const MainLayout = () => {
           {menuData.map((menu, idx) => (
             <div 
               key={menu.title} 
-              className={`${styles.menuGroup} ${openIndex === idx ? styles.active : ''}`}
+              className={`${styles.menuGroup} ${openMenus.includes(idx) ? styles.active : ''}`}
             >
               <div
-                className={styles.menuTitle + (openIndex === idx ? ' ' + styles.active : '')}
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                className={styles.menuTitle + (openMenus.includes(idx) ? ' ' + styles.active : '')}
+                onClick={() => toggleMenu(idx)}
               >
                 <div className={styles.menuTitleContent}>
                   <span className={styles.menuIcon}>{menu.icon}</span>
                   <span className={styles.menuText}>{menu.title}</span>
                 </div>
-                <span className={styles.arrow + (openIndex === idx ? ' ' + styles.arrowUp : '')}></span>
+                <span className={styles.arrow + (openMenus.includes(idx) ? ' ' + styles.arrowUp : '')}></span>
               </div>
               <div 
                 className={styles.subMenuWrapper}
                 style={{
-                  height: openIndex === idx ? `${subMenuHeights[idx]}px` : '0',
+                  height: openMenus.includes(idx) ? `${subMenuHeights[idx]}px` : '0',
                 }}
               >
                 <div 
