@@ -11,7 +11,8 @@ import {
   MdFullscreenExit,
   MdHelp,
   MdDarkMode,
-  MdLightMode
+  MdLightMode,
+  MdChevronRight
 } from 'react-icons/md';
 import { RiFlowChart, RiDatabase2Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
@@ -231,7 +232,12 @@ const MainLayout = () => {
       </aside>
       <div className={`${styles.mainContent} ${isCollapsed ? styles.expanded : ''}`}>
         <div className={styles.header}>
-          <div className={styles.headerLeft}>
+          <div className={styles.breadcrumb}>
+            <span>同步任务管理</span>
+            <MdChevronRight className={styles.breadcrumbIcon} />
+            <span>同步任务列表</span>
+          </div>
+          <div className={styles.headerRight}>
             <div className={styles.headerItem}>
               <MdNotifications className={styles.headerIcon} />
               <span className={styles.notificationBadge}>3</span>

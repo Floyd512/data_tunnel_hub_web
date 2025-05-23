@@ -1,15 +1,57 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 8px 24px 24px 24px;
-  background: #f5f7fa;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 24px;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+}
+
+.breadcrumb span {
+  font-weight: 500;
+}
+
+.breadcrumb span:last-child {
+  color: #666;
+}
+
+.breadcrumbIcon {
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-top: none;
+}
+
+.tableWrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.tableContainer {
+  overflow-x: auto;
 }
 
 .header h2 {
@@ -20,8 +62,13 @@
   letter-spacing: 0.5px;
 }
 
+.tableHeader {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
 .addButton {
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: #4caf50;
   color: white;
   border: none;
@@ -42,36 +89,25 @@
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
-.taskList {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.tableContainer {
-  overflow-x: auto;
-  border-radius: 12px;
-}
-
 .table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+  background: #fff;
 }
 
 .table th,
 .table td {
   padding: 16px;
   text-align: left;
-  border-bottom: 1px solid #f0f0f0;
+  border: 1px solid #d9d9d9;
 }
 
 .table th {
   background: #fafafa;
-  font-weight: 500;
+  font-weight: 700;
   color: #1a1a1a;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -81,7 +117,7 @@
 }
 
 .table tr:last-child td {
-  border-bottom: none;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .actions {
@@ -157,4 +193,21 @@
 
 .tableContainer::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+.actionButton.deleteButton {
+  color: #ff4d4f;
+}
+
+.actionButton.deleteButton:hover {
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.actionButton.deleteButton .buttonContent span {
+  color: #ff4d4f;
+}
+
+.actionButton.deleteButton:hover .buttonContent span {
+  color: #ff4d4f;
 } 

@@ -373,13 +373,47 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 100;
   border-radius: 16px;
   margin: 0 8px 0 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb span {
+  font-weight: 500;
+}
+
+.breadcrumb span:last-child {
+  color: #666;
+}
+
+.breadcrumbIcon {
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .headerLeft {
@@ -534,12 +568,12 @@
 }
 
 .content {
-  flex: 1;
-  padding: 2.5rem 3rem;
-  background: #fff;
+  padding: 0 4px 4px 4px;
+  background: transparent;
+  height: calc(100vh - 64px);
   overflow-y: auto;
-  border-radius: 16px;
-  margin: 8px 0 0 0;
+  position: relative;
+  margin-top: -4px;
 }
 
 .menuText {

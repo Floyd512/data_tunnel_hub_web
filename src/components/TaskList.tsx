@@ -52,82 +52,86 @@ const TaskList = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.header}>
         <h2>同步任务列表</h2>
-        <button className={styles.addButton}>新建任务</button>
       </div>
-      <div className={styles.taskList}>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>任务名称</th>
-                <th>数据源类型</th>
-                <th>创建时间</th>
-                <th>更新时间</th>
-                <th>创建人</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map(task => (
-                <tr key={task.id}>
-                  <td>{task.name}</td>
-                  <td>{task.sourceType}</td>
-                  <td>{task.createTime}</td>
-                  <td>{task.updateTime}</td>
-                  <td>{task.creator}</td>
-                  <td>
-                    <div className={styles.actions}>
-                      <button 
-                        className={styles.actionButton}
-                        onClick={() => handleExecute(task.id)}
-                        title="执行"
-                      >
-                        <div className={styles.buttonContent}>
-                          <MdPlayArrow />
-                          <span>执行</span>
-                        </div>
-                      </button>
-                      <button 
-                        className={styles.actionButton}
-                        onClick={() => handleEdit(task.id)}
-                        title="编辑"
-                      >
-                        <div className={styles.buttonContent}>
-                          <MdEdit />
-                          <span>编辑</span>
-                        </div>
-                      </button>
-                      <button 
-                        className={styles.actionButton}
-                        onClick={() => handleDelete(task.id)}
-                        title="删除"
-                      >
-                        <div className={styles.buttonContent}>
-                          <MdDelete />
-                          <span>删除</span>
-                        </div>
-                      </button>
-                      <button 
-                        className={styles.actionButton}
-                        title="更多"
-                      >
-                        <div className={styles.buttonContent}>
-                          <MdMoreVert />
-                          <span>更多</span>
-                        </div>
-                      </button>
-                    </div>
-                  </td>
+      <div className={styles.container}>
+        <div className={styles.tableHeader}>
+          <button className={styles.addButton}>新建任务</button>
+        </div>
+        <div className={styles.tableWrapper}>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>任务名称</th>
+                  <th>数据源类型</th>
+                  <th>创建时间</th>
+                  <th>更新时间</th>
+                  <th>创建人</th>
+                  <th>操作</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {tasks.map(task => (
+                  <tr key={task.id}>
+                    <td>{task.name}</td>
+                    <td>{task.sourceType}</td>
+                    <td>{task.createTime}</td>
+                    <td>{task.updateTime}</td>
+                    <td>{task.creator}</td>
+                    <td>
+                      <div className={styles.actions}>
+                        <button 
+                          className={styles.actionButton}
+                          onClick={() => handleExecute(task.id)}
+                          title="执行"
+                        >
+                          <div className={styles.buttonContent}>
+                            <MdPlayArrow />
+                            <span>执行</span>
+                          </div>
+                        </button>
+                        <button 
+                          className={styles.actionButton}
+                          onClick={() => handleEdit(task.id)}
+                          title="编辑"
+                        >
+                          <div className={styles.buttonContent}>
+                            <MdEdit />
+                            <span>编辑</span>
+                          </div>
+                        </button>
+                        <button 
+                          className={`${styles.actionButton} ${styles.deleteButton}`}
+                          onClick={() => handleDelete(task.id)}
+                          title="删除"
+                        >
+                          <div className={styles.buttonContent}>
+                            <MdDelete />
+                            <span>删除</span>
+                          </div>
+                        </button>
+                        <button 
+                          className={styles.actionButton}
+                          title="更多"
+                        >
+                          <div className={styles.buttonContent}>
+                            <MdMoreVert />
+                            <span>更多</span>
+                          </div>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
